@@ -5,7 +5,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'sistema',
-    'name' => 'Serie Yii2',
+    'name' => 'Yii2',
     'language' => 'pt_br',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],

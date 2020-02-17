@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 use yii\db\Expression;
 
 /**
@@ -21,7 +22,7 @@ use yii\db\Expression;
  *
  * @property Category $category
  */
-class Bill extends \yii\db\ActiveRecord
+class Bill extends ActiveRecord
 {
     const TYPE_RECEIVE = 1;
     const TYPE_PAY =  2;

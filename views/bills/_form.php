@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'amount')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')>dropDownList(Bill::getStatusOptions(),[
+    <?= $form->field($model, 'status')->dropDownList(Bill::getStatusOptions(),[
         'prompt'=> ':: Selecione ::']) ?>
 
     <div class="form-group">

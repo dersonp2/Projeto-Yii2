@@ -26,7 +26,6 @@ class m200215_133133_create_bills_table extends Migration
         $this->addForeignKey('fk_bills_category_id', '{{bills}}', 'category_id',
             '{{categories}}', 'id' );
 
-        //table, collumns, rows
         $this->batchInsert('{{bills}}',['category_id', 'type','date', 'description', 'amount', 'created_at'] ,[
             //salário
             [6,1,'2020-01-05', 'Salario', 3000, new Expression('NOW()')],

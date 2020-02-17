@@ -19,7 +19,7 @@ class m200215_133112_create_categories_table extends Migration
             'created_at' =>$this->dateTime()->notNull(),
             'updated_at' =>$this->dateTime()
         ]);
-//Tabela, coluna, linha
+
         $this->batchInsert('{{%categories}}', ['name', 'created_at'],[
          ['Cartão de crédito', new Expression('NOW()')],
          ['Lazer', new Expression('NOW()')],
