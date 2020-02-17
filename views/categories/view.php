@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
@@ -38,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="list-group">
     <?php foreach ($model->bills as $bill): ?>
         <?php $color =  $bill->type == 1 ? 'sucesso' :'danger' ?>
-        <a href="<?= Url::to(['bills/update','id'=>$bill->id]) ?>"
+        <a href="<?= Url::to(['bills/update', 'id' => $bill->id]) ?>"
         class="list-group-item list-group-item-<?=$color?>" >
             <h4 class="list-group-item-heading"><?=$bill->description?></h4>
             <p>
