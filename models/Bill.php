@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "{{%bills}}".
@@ -21,6 +23,13 @@ use Yii;
  */
 class Bill extends \yii\db\ActiveRecord
 {
+    const TYPE_RECEIVE = 1;
+    const TYPE_PAY =  2;
+
+    const STATUS_OPENED = 1;
+    const STATUS_PAYED_RECEIVED = 2;
+
+
     /**
      * {@inheritdoc}
      */
@@ -29,13 +38,14 @@ class Bill extends \yii\db\ActiveRecord
         return '{{%bills}}';
     }
 
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['category_id', 'type', 'date', 'description', 'amount', 'created_at'], 'required'],
+            [['category_id', 'type', 'date', 'description', 'amount'], 'required'],
             [['category_id', 'type', 'status'], 'integer'],
             [['date', 'created_at', 'update_at'], 'safe'],
             [['amount'], 'number'],
@@ -51,11 +61,11 @@ class Bill extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'category_id' => 'Category ID',
-            'type' => 'Type',
-            'date' => 'Date',
-            'description' => 'Description',
-            'amount' => 'Amount',
+            'category_id' => 'Categoria',
+            'type' => 'Tipo',
+            'date' => 'Data',
+            'description' => 'Descrição',
+            'amount' => 'Valor',
             'status' => 'Status',
             'created_at' => 'Criado em',
             'updated_at' => 'Atualizado em',
@@ -70,5 +80,39 @@ class Bill extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+
+    public function getTypeText() : string
+    {
+        return static::getTypeOptions()[$this->type];
+    }
+
+    public function getStatusText() : string{
+        return static::getStatusOptions()[$this->status];
+    }
+
+    public static function getTypeOptions() : array
+    {
+        return [
+        static::TYPE_RECEIVE => "Contas a receber",
+            static::TYPE_PAY => "Contas á pagar",
+        ];
+    }
+    public static function getStatusOptions() : array
+    {
+        return [
+            static::STATUS_OPENED => "Em aberto",
+            static::STATUS_PAYED_RECEIVED => "Pago/Recebido",
+        ];
     }
 }

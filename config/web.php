@@ -51,7 +51,10 @@ $config = [
             'rules' => [
             ],
         ],
-
+        'formatter' =>[
+          'dateFormat'=> 'dd/MM/yyyy',
+            'currencyCode' =>'R$',
+        ],
     ],
     'params' => $params,
 ];

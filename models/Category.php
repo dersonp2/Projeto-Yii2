@@ -5,6 +5,7 @@ use yii\behaviors\TimestampBehavior;
 use \yii\db\ActiveRecord;
 use Yii;
 use yii\db\Expression;
+use yii\helpers\ArrayHelper;
 
 
 /**
@@ -69,5 +70,10 @@ class Category extends ActiveRecord
     public function getBills()
     {
         return $this->hasMany(Bill::className(), ['category_id' => 'id']);
+    }
+
+    public static function getNameCategory(){
+        $row = static::find()->orderBy('name ASC')->all();
+        return ArrayHelper::map($row, 'id', 'name');
     }
 }
