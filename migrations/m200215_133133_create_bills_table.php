@@ -20,14 +20,14 @@ class m200215_133133_create_bills_table extends Migration
             'description' =>$this->string(60)->notNull(),
             'amount' => $this->decimal(10,2)->notNull(),
             'status'=>$this->smallInteger(1)->notNull()->defaultValue(1),
-            'create_at' =>$this->dateTime()->notNull(),
-            'update_at' =>$this->dateTime()
+            'created_at' =>$this->dateTime()->notNull(),
+            'updated_at' =>$this->dateTime()
         ]);
         $this->addForeignKey('fk_bills_category_id', '{{bills}}', 'category_id',
             '{{categories}}', 'id' );
 
         //table, collumns, rows
-        $this->batchInsert('{{bills}}',['category_id', 'type','date', 'description', 'amount', 'create_at'] ,[
+        $this->batchInsert('{{bills}}',['category_id', 'type','date', 'description', 'amount', 'created_at'] ,[
             //salário
             [6,1,'2020-01-05', 'Salario', 3000, new Expression('NOW()')],
             [6,1,'2020-01-07', 'Salario esposa', 2500, new Expression('NOW()')],

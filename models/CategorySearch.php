@@ -2,9 +2,7 @@
 
 namespace app\models;
 
-use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Category;
 
 /**
  * CategorySearch represents the model behind the search form of `app\models\Category`.
@@ -17,19 +15,11 @@ class CategorySearch extends Category
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['name', 'create_at', 'update_at'], 'safe'],
+            ['name', 'string', 'max'=>60],
+            ['name', 'safe']
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function scenarios()
-    {
-        // bypass scenarios() implementation in the parent class
-        return Model::scenarios();
-    }
 
     /**
      * Creates data provider instance with search query applied
@@ -40,7 +30,7 @@ class CategorySearch extends Category
      */
     public function search($params)
     {
-        $query = Category::find();
+        $query = Category::find()->orderBy('name ASC');
 
         // add conditions that should always apply here
 
@@ -55,13 +45,6 @@ class CategorySearch extends Category
             // $query->where('0=1');
             return $dataProvider;
         }
-
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'create_at' => $this->create_at,
-            'update_at' => $this->update_at,
-        ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);
 

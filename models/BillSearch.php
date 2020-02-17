@@ -18,7 +18,7 @@ class BillSearch extends Bill
     {
         return [
             [['id', 'category_id', 'type', 'status'], 'integer'],
-            [['date', 'description', 'create_at', 'update_at'], 'safe'],
+            [['date', 'description', 'created_at', 'updated_at'], 'safe'],
             [['amount'], 'number'],
         ];
     }
@@ -65,8 +65,8 @@ class BillSearch extends Bill
             'date' => $this->date,
             'amount' => $this->amount,
             'status' => $this->status,
-            'create_at' => $this->create_at,
-            'update_at' => $this->update_at,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'description', $this->description]);

@@ -14,8 +14,8 @@ use Yii;
  * @property string $description
  * @property float $amount
  * @property int $status
- * @property string $create_at
- * @property string|null $update_at
+ * @property string $created_at
+ * @property string|null $updated_at
  *
  * @property Category $category
  */
@@ -35,9 +35,9 @@ class Bill extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'type', 'date', 'description', 'amount', 'create_at'], 'required'],
+            [['category_id', 'type', 'date', 'description', 'amount', 'created_at'], 'required'],
             [['category_id', 'type', 'status'], 'integer'],
-            [['date', 'create_at', 'update_at'], 'safe'],
+            [['date', 'created_at', 'update_at'], 'safe'],
             [['amount'], 'number'],
             [['description'], 'string', 'max' => 60],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
@@ -57,8 +57,8 @@ class Bill extends \yii\db\ActiveRecord
             'description' => 'Description',
             'amount' => 'Amount',
             'status' => 'Status',
-            'create_at' => 'Create At',
-            'update_at' => 'Update At',
+            'created_at' => 'Criado em',
+            'updated_at' => 'Atualizado em',
         ];
     }
 
