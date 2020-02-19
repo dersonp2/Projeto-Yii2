@@ -11,11 +11,17 @@ $this->title = 'Sistema Financeiro Pessoal';
         <p class="lead">Organização de suas financias pessoais.</p>
 
         <p>
-            <a class="btn btn-lg btn-success" href="bills/index">Criar um lançamento</a>
+            <?=
+            Html::a('<i class="glyphicon glyphicon-plus-sign"></i> Criar um lançamento',
+                ['/bills/index'],
+                ['title'=>'Criar um lançamento',
+                'class'=> 'btn btn-lg btn-success'])
+            ?>
         </p>
         <p>
             <?=
-            Html::a("Ver Relatorios")
+            Html::a("Ver Relatorios", ['/reports/index'], ['title'=>'Ver meus relatórios',
+                'class'=> 'btn btn-sm btn link'])
             ?>
         </p>
     </div>
